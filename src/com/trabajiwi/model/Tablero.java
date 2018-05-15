@@ -40,7 +40,19 @@ public class Tablero {
     }
 
     public boolean haGanado(TipoFicha ficha){
-        return false;
+        return (casillas[filaActual][0].getTipoFicha() == ficha
+                && casillas[filaActual][1].getTipoFicha() == ficha
+                && casillas[filaActual][2].getTipoFicha() == ficha
+                || casillas[0][columnaActual].getTipoFicha() == ficha
+                && casillas[1][columnaActual].getTipoFicha() == ficha
+                && casillas[2][columnaActual].getTipoFicha() == ficha
+                || filaActual == columnaActual
+                && casillas[0][0].getTipoFicha() == ficha
+                && casillas[1][1].getTipoFicha() == ficha
+                && casillas[2][2].getTipoFicha() == ficha
+                || casillas[0][2].getTipoFicha() == ficha
+                && casillas[1][1].getTipoFicha() == ficha
+                && casillas[2][0].getTipoFicha() == ficha);
     }
 
     public void dibujar(){
