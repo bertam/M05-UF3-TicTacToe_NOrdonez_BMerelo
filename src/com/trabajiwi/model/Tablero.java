@@ -19,4 +19,60 @@ public class Tablero {
             }
         }
     }
+
+    public void init(){
+
+    }
+
+    public boolean esEmpate(){
+        return false;
+    }
+
+    public boolean haGanado(TipoFicha ficha){
+        return false;
+    }
+
+    public void dibujar(){
+
+    }
+    
+    public int getFilas() {
+        return filas;
+    }
+
+    public void setFilas(int filas) {
+        this.filas = filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
+    }
+
+    public void setColumnas(int columnas) {
+        this.columnas = columnas;
+    }
+
+    public int getFilaActual() {
+        return filaActual;
+    }
+
+    public void setFilaActual(int filaActual) {
+        this.filaActual = filaActual;
+    }
+
+    public int getColumnaActual() {
+        return columnaActual;
+    }
+
+    public void setColumnaActual(int columnaActual) {
+        this.columnaActual = columnaActual;
+    }
+
+    public Casilla[][] getCasillas() {
+        return casillas;
+    }
+
+    public void setCasillas(Casilla[][] casillas) {
+        this.casillas = casillas;
+    }
 }
