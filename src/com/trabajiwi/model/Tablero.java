@@ -29,7 +29,14 @@ public class Tablero {
     }
 
     public boolean esEmpate(){
-        return false;
+        for (int row = 0; row < casillas.length; ++row) {
+            for (int col = 0; col < casillas[0].length; ++col) {
+                if (casillas[row][col].getTipoFicha() == TipoFicha.EMPTY) {
+                    return false;
+                }
+            }
+        }
+        return true; // empate
     }
 
     public boolean haGanado(TipoFicha ficha){
