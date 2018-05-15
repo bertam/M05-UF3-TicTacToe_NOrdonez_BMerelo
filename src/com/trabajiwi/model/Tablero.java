@@ -21,7 +21,11 @@ public class Tablero {
     }
 
     public void init(){
-
+        for (int fila = 0; fila < filas; ++fila) {
+            for (int columna = 0; columna < columnas; ++columna) {
+                casillas[fila][columna].limpiar();  // clear the cell content
+            }
+        }
     }
 
     public boolean esEmpate(){
