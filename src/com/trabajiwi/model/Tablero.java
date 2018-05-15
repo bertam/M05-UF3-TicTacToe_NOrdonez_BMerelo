@@ -56,7 +56,16 @@ public class Tablero {
     }
 
     public void dibujar(){
-
+        for (int fila = 0; fila < filas; ++fila) {
+            for (int columna = 0; columna < columnas; ++columna) {
+                casillas[fila][columna].dibujar();   // each cell paints itself
+                if (columna < columnas - 1) System.out.print("|");
+            }
+            System.out.println();
+            if (fila < filas - 1) {
+                System.out.println("-----------");
+            }
+        }
     }
     
     public int getFilas() {

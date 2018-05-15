@@ -37,4 +37,18 @@ public class Casilla {
     public Casilla() {
         this.tipoFicha = TipoFicha.EMPTY;
     }
+
+    public void dibujar() {
+        switch (tipoFicha) {
+            case CROSS:
+                System.out.print(" X ");
+                break;
+            case NOUGHT:
+                System.out.print(" O ");
+                break;
+            case EMPTY:
+                System.out.print("   ");
+                break;
+        }
+    }
 }
