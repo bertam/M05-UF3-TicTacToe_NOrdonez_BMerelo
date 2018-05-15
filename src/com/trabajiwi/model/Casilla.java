@@ -9,8 +9,13 @@ public class Casilla {
         this.posicion = posicion;
     }
 
+
     public Casilla(Posicion posicion) {
         this.posicion = posicion;
+    }
+
+    public void limpiar(){
+        this.tipoFicha = TipoFicha.EMPTY;
     }
 
     public Posicion getPosicion() {
