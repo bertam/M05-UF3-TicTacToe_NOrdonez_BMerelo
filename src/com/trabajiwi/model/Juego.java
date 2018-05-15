@@ -2,45 +2,28 @@ package com.trabajiwi.model;
 
 import java.util.Scanner;
 
-public class Juego {
+public class Juego implements Runnable{
 
     private Tablero tablero;
     private Estado estadoActual;
     private TipoFicha jugadorActual;
 
-    private static Scanner in = new Scanner(System.in);  // input Scanner
+    private static Scanner in = new Scanner(System.in);
 
 
     public Juego() {
-        tablero = new Tablero(3,3);
-        do {
-            moverJugador(jugadorActual);
-            tablero.dibujar();
-            actualizarJuego(jugadorActual);
-
-            if (estadoActual == Estado.CROSSWON) {
-                System.out.println("'X' GANA!");
-            } else if (estadoActual == Estado.NOUGHTWON) {
-                System.out.println("'O' GANA!");
-            } else if (estadoActual == Estado.DRAW) {
-                System.out.println("EMPATE!");
-            }
-            // cambiem jugador
-            jugadorActual = (jugadorActual == TipoFicha.CROSS) ? TipoFicha.NOUGHT : TipoFicha.CROSS;
-        } while (estadoActual == Estado.PLAYING);
-        initGame();
     }
 
     private void actualizarJuego(TipoFicha currentPlayer) {
-        if (tablero.haGanado(currentPlayer)) {  // check for win
+        if (tablero.haGanado(currentPlayer)) {
             estadoActual = (currentPlayer == TipoFicha.CROSS) ? Estado.CROSSWON : Estado.NOUGHTWON;
-        } else if (tablero.esEmpate()) {  // check for draw
+        } else if (tablero.esEmpate()) {
             estadoActual = Estado.DRAW;
         }
     }
 
     private void moverJugador(TipoFicha currentPlayer) {
-        boolean validInput = false;  // for validating input
+        boolean validInput = false;
         do {
             if (currentPlayer == TipoFicha.CROSS) {
                 System.out.print("Jugador 'X', introduce tu movimiento (fila[1-3] columna[1-3]): ");
@@ -66,5 +49,26 @@ public class Juego {
         tablero.init();
         jugadorActual = TipoFicha.CROSS;
         estadoActual = Estado.PLAYING;
+    }
+
+    @Override
+    public void run() {
+        tablero = new Tablero(3,3);
+        do {
+            moverJugador(jugadorActual);
+            tablero.dibujar();
+            actualizarJuego(jugadorActual);
+
+            if (estadoActual == Estado.CROSSWON) {
+                System.out.println("'X' GANA!");
+            } else if (estadoActual == Estado.NOUGHTWON) {
+                System.out.println("'O' GANA!");
+            } else if (estadoActual == Estado.DRAW) {
+                System.out.println("EMPATE!");
+            }
+            // cambiem jugador
+            jugadorActual = (jugadorActual == TipoFicha.CROSS) ? TipoFicha.NOUGHT : TipoFicha.CROSS;
+        } while (estadoActual == Estado.PLAYING);
+        initGame();
     }
 }

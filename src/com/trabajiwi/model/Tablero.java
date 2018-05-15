@@ -23,7 +23,7 @@ public class Tablero {
     public void init(){
         for (int fila = 0; fila < filas; ++fila) {
             for (int columna = 0; columna < columnas; ++columna) {
-                casillas[fila][columna].limpiar();  // clear the cell content
+                casillas[fila][columna].limpiar();
             }
         }
     }
@@ -58,7 +58,7 @@ public class Tablero {
     public void dibujar(){
         for (int fila = 0; fila < filas; ++fila) {
             for (int columna = 0; columna < columnas; ++columna) {
-                casillas[fila][columna].dibujar();   // each cell paints itself
+                casillas[fila][columna].dibujar();
                 if (columna < columnas - 1) System.out.print("|");
             }
             System.out.println();
