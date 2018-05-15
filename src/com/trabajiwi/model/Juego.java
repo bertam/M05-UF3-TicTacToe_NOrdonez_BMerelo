@@ -1,8 +1,9 @@
 package com.trabajiwi.model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Juego implements Runnable{
+public class Juego implements Runnable {
 
     private Tablero tablero;
     private Estado estadoActual;
@@ -42,6 +43,7 @@ public class Juego implements Runnable{
                 System.out.println("Este movimiento en (" + (fila + 1) + "," + (columna + 1)
                         + ") no es valido. Vuelve a insertar");
             }
+
         } while (!validInput);
     }
 
@@ -53,7 +55,10 @@ public class Juego implements Runnable{
 
     @Override
     public void run() {
-        tablero = new Tablero(3,3);
+
+        tablero = new Tablero(3, 3);
+        initGame();
+
         do {
             moverJugador(jugadorActual);
             tablero.dibujar();
@@ -69,6 +74,5 @@ public class Juego implements Runnable{
             // cambiem jugador
             jugadorActual = (jugadorActual == TipoFicha.CROSS) ? TipoFicha.NOUGHT : TipoFicha.CROSS;
         } while (estadoActual == Estado.PLAYING);
-        initGame();
     }
 }
