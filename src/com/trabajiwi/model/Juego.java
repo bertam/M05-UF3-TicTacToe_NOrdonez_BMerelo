@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Juego {
 
     private Tablero tablero;
-    private Estado currentState;
-    private TipoFicha currentPlayer;
+    private Estado estadoActual;
+    private TipoFicha jugadorActual;
 
     private static Scanner in = new Scanner(System.in);  // input Scanner
 
@@ -14,28 +14,28 @@ public class Juego {
     public Juego() {
         tablero = new Tablero(3,3);
         do {
-            moverJugador(currentPlayer);
+            moverJugador(jugadorActual);
             tablero.dibujar();
-            actualizarJuego(currentPlayer);
+            actualizarJuego(jugadorActual);
 
-            if (currentState == Estado.CROSSWON) {
+            if (estadoActual == Estado.CROSSWON) {
                 System.out.println("'X' GANA!");
-            } else if (currentState == Estado.NOUGHTWON) {
+            } else if (estadoActual == Estado.NOUGHTWON) {
                 System.out.println("'O' GANA!");
-            } else if (currentState == Estado.DRAW) {
+            } else if (estadoActual == Estado.DRAW) {
                 System.out.println("EMPATE!");
             }
             // cambiem jugador
-            currentPlayer = (currentPlayer == TipoFicha.CROSS) ? TipoFicha.NOUGHT : TipoFicha.CROSS;
-        } while (currentState == Estado.PLAYING);
+            jugadorActual = (jugadorActual == TipoFicha.CROSS) ? TipoFicha.NOUGHT : TipoFicha.CROSS;
+        } while (estadoActual == Estado.PLAYING);
         initGame();
     }
 
     private void actualizarJuego(TipoFicha currentPlayer) {
         if (tablero.haGanado(currentPlayer)) {  // check for win
-            currentState = (currentPlayer == TipoFicha.CROSS) ? Estado.CROSSWON : Estado.NOUGHTWON;
+            estadoActual = (currentPlayer == TipoFicha.CROSS) ? Estado.CROSSWON : Estado.NOUGHTWON;
         } else if (tablero.esEmpate()) {  // check for draw
-            currentState = Estado.DRAW;
+            estadoActual = Estado.DRAW;
         }
     }
 
@@ -64,7 +64,7 @@ public class Juego {
 
     public void initGame() {
         tablero.init();
-        currentPlayer = TipoFicha.CROSS;
-        currentState = Estado.PLAYING;
+        jugadorActual = TipoFicha.CROSS;
+        estadoActual = Estado.PLAYING;
     }
 }
