@@ -1,4 +1,4 @@
-package com.trabajiwi;
+package com.trabajiwi.model;
 
 public class Casilla {
    private TipoFicha tipoFicha;
